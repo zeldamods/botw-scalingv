@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="app.css">
+  <title>scaling_v</title>
+</head>
+<body>
+<div id="app" class="hidden">
+  <div class="selector" v-if="!actorType">
+    <ul>
+      <li><a href="?actorType=WeaponSmallSword">WeaponSmallSword</a></li>
+      <li><a href="?actorType=WeaponLargeSword">WeaponLargeSword</a></li>
+      <li><a href="?actorType=WeaponSpear">WeaponSpear</a></li>
+      <li><a href="?actorType=WeaponBow">WeaponBow</a></li>
+      <li><a href="?actorType=WeaponShield">WeaponShield</a></li>
+    </ul>
+  </div>
+  <div class="point-indicator" v-if="actorType">{{points}} pts</div>
+  <div class="weapon-table" v-for="table in config.weapon_tables" v-if="table.actorType == actorType">
+    <div class="weapon" v-for="(weapon, index) in table.actors" v-bind:class="{ active: weapon.active, m0: weapon.plus === -1, m1: weapon.plus === 0, m2: weapon.plus === 1, }" v-bind:title="weapon.name">
+      <img v-bind:src="imagePath(weapon.name)">
+    </div>
+  </div>
+</div>
+<!--
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
